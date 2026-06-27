@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - XYZ Bank</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="top-navbar">
+
+    <div class="nav-logo">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="XYZ Bank">
+        <span>XYZ Bank</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="/dashboard" class="active">Dashboard</a>
+        <a href="/transfer">Transfer</a>
+        <a href="/history">Transactions</a>
+        <a href="/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</nav>
+
+<section class="pro-dashboard">
+
+    <aside class="profile-panel">
+
+        <div class="profile-header">
+
+            <div class="profile-avatar">
+                {{ name[0] }}
+            </div>
+
+            <div>
+                <h2>{{ name }}</h2>
+                <p>XYZ Bank Customer</p>
+            </div>
+
+        </div>
+
+        <div class="profile-info">
+
+            <div>
+                <span>Account Number</span>
+                <strong>{{ account_number }}</strong>
+            </div>
+
+            <div>
+                <span>Email</span>
+                <strong>{{ email }}</strong>
+            </div>
+
+            <div>
+                <span>Mobile</span>
+                <strong>{{ mobile }}</strong>
+            </div>
+
+            <div>
+                <span>Status</span>
+                <strong class="status-active">Active</strong>
+            </div>
+
+        </div>
+
+        <a href="/profile" class="logout-btn">
+            View Full Profile
+        </a>
+
+    </aside>
+
+    <main class="dashboard-main">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="{{ category }}-box">
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="dashboard-top">
+
+            <div>
+                <h1>Welcome back, {{ name }}</h1>
+                <p>Manage your banking activities securely.</p>
+            </div>
+
+            <div class="secure-badge">
+                Secure Session
+            </div>
+
+        </div>
+
+        <div class="bank-card">
+
+            <div class="card-top">
+                <span>XYZ BANK</span>
+                <span>VISA</span>
+            </div>
+
+            <div class="card-balance">
+                ₹{{ "%.2f"|format(balance) }}
+            </div>
+
+            <div class="card-number">
+                {{ account_number }}
+            </div>
+
+            <div class="card-holder">
+                {{ name }}
+            </div>
+
+        </div>
+
+        <div class="quick-actions">
+
+            <a href="/deposit">
+                <button>Deposit Money</button>
+            </a>
+
+            <a href="/transfer">
+                <button>Transfer Money</button>
+            </a>
+
+            <a href="/history">
+                <button>Transaction History</button>
+            </a>
+
+            <a href="/profile">
+                <button>Profile Details</button>
+            </a>
+
+        </div>
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <h3>Account Type</h3>
+                <p>Savings Account</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Branch</h3>
+                <p>Mangalore Digital Branch</p>
+            </div>
+
+            <div class="info-card">
+                <h3>KYC Status</h3>
+                <p>Verified</p>
+            </div>
+
+        </div>
+
+    </main>
+
+</section>
+
+</body>
+</html>

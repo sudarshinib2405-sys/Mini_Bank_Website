@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History - XYZ Bank</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="top-navbar">
+    <div class="nav-logo">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="XYZ Bank">
+        <span>XYZ Bank</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/transfer">Transfer</a>
+        <a href="/history" class="active">History</a>
+        <a href="/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<section class="history-page">
+
+    <div class="history-card">
+
+        <h2>Transaction History</h2>
+        <p>View all credited and debited transactions.</p>
+
+        {% if transactions %}
+        <table class="history-table">
+
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Account</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Date & Time</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for tx in transactions %}
+                <tr>
+
+                    <td>
+                        {% if tx.type == "Debited" %}
+                            <span class="sent">Debited</span>
+                        {% else %}
+                            <span class="received">Credited</span>
+                        {% endif %}
+                    </td>
+
+                    <td>{{ tx.account }}</td>
+
+                    <td>
+                        ₹{{ "%.2f"|format(tx.amount) }}
+                    </td>
+
+                    <td>
+                        {{ tx.description }}
+                    </td>
+
+                    <td>
+                        {{ tx.time }}
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div class="empty-history">
+            No transactions yet.
+        </div>
+
+        {% endif %}
+
+        <a href="/dashboard" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</section>
+
+</body>
+</html>

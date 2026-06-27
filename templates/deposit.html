@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Money - XYZ Bank</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="top-navbar">
+
+    <div class="nav-logo">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="XYZ Bank">
+        <span>XYZ Bank</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/transfer">Transfer</a>
+        <a href="#">History</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</nav>
+
+<section class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="auth-logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="XYZ Bank">
+        </div>
+
+        <h2>Deposit Money</h2>
+        <p>Add money to your XYZ Bank demo account.</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="error-box">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/deposit">
+
+            <div class="input-group">
+                <label>Amount</label>
+                <div class="amount-box">
+    <span>₹</span>
+
+    <input
+        type="number"
+        name="amount"
+        step="0.01"
+        placeholder="0.00"
+        required>
+</div>
+            </div>
+
+            <button class="auth-btn" type="submit">
+                Deposit Now
+            </button>
+
+        </form>
+
+        <a class="back-link" href="/dashboard">← Back to Dashboard</a>
+
+    </div>
+
+</section>
+
+</body>
+</html>

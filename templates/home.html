@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XYZ Bank</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="top-navbar">
+
+    <div class="nav-logo">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="XYZ Bank">
+        <span>XYZ Bank</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="/" class="active">Home</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    </div>
+
+</nav>
+
+<section class="home-hero">
+
+    <div class="home-content">
+
+        <span class="tag">Educational Demo Project</span>
+
+        <h1>Welcome to XYZ Bank</h1>
+
+        <p>
+            A fictional banking web application built to learn full-stack development,
+            authentication, database integration, and web security concepts.
+        </p>
+
+        <div class="home-actions">
+            <a href="/login">
+                <button class="primary-btn">Login</button>
+            </a>
+
+            <a href="/register">
+                <button class="secondary-btn">Create Account</button>
+            </a>
+        </div>
+
+        <div class="project-note">
+            <strong>XYZ Bank – Educational Demo Project</strong>
+            <span>This is a fictional banking application created for learning purposes.</span>
+        </div>
+
+    </div>
+
+    <div class="home-card">
+
+        <div class="mini-bank-card">
+            <div class="card-head">
+                <span>XYZ BANK</span>
+                <span>DEMO</span>
+            </div>
+
+            <h2>₹10,000.00</h2>
+
+            <p>VB00XXX1</p>
+
+            <small>Secured • Smart • Trusted</small>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

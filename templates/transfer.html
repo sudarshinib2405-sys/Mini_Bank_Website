@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Money - XYZ Bank</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="top-navbar">
+
+    <div class="nav-logo">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="XYZ Bank">
+        <span>XYZ Bank</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/transfer" class="active">Transfer</a>
+        <a href="/history">History</a>
+        <a href="/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</nav>
+
+<section class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="auth-logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="XYZ Bank">
+        </div>
+
+        <h2>Transfer Money</h2>
+        <p>Send money securely to another XYZ Bank account.</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="{{ category }}-box">
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/transfer">
+
+            <div class="input-group">
+                <label>Receiver Account Number</label>
+                <input
+                    type="text"
+                    name="receiver_account"
+                    placeholder="Example: VB000002"
+                    required>
+            </div>
+
+            <div class="input-group">
+                <label>Amount</label>
+
+                <div class="amount-box">
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        name="amount"
+                        step="0.01"
+                        placeholder="0.00"
+                        required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Description</label>
+                <textarea
+                    name="description"
+                    placeholder="Enter transfer note, for example: Rent payment, Food bill, Project fee"
+                    rows="4"></textarea>
+            </div>
+
+            <button class="auth-btn" type="submit">
+                Transfer Now
+            </button>
+
+        </form>
+
+        <a class="back-link" href="/dashboard">← Back to Dashboard</a>
+
+    </div>
+
+</section>
+
+</body>
+</html>

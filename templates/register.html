@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - XYZ Bank</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <section class="auth-page">
+
+        <div class="auth-card">
+
+            <div class="auth-logo">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="XYZ Bank">
+</div>
+
+            <h2>Open Your Account</h2>
+
+            <p>
+                Join XYZ Bank and experience secure digital banking.
+            </p>
+            {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="error-box">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+            <form method="POST" action="/register">
+
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input
+                        type="text"
+                        name="full_name"
+                        placeholder="Enter your full name"
+                        required>
+                </div>
+
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        required>
+                </div>
+
+                <div class="input-group">
+                    <label>Mobile Number</label>
+                    <input
+                        type="tel"
+                        name="mobile"
+                        placeholder="Enter your mobile number"
+                        required>
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Create a password"
+                        required>
+                </div>
+
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    <input
+                        type="password"
+                        name="confirm_password"
+                        placeholder="Confirm your password"
+                        required>
+                </div>
+
+                <button class="auth-btn" type="submit">
+                    Create Account
+                </button>
+
+            </form>
+
+            <p class="auth-footer">
+                Already have an account?
+                <a href="/login">Sign In</a>
+            </p>
+
+            <a class="back-link" href="/">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </section>
+
+</body>
+</html>
