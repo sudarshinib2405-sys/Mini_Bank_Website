@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, flash, redirect, session
 import sqlite3
 import bcrypt
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 app = Flask(__name__)
-app.secret_key = "xyz_bank_secret_key"
-
-
+app.secret_key = os.getenv("SECRET_KEY")
 def init_db():
     conn = sqlite3.connect("bank.db")
     cursor = conn.cursor()

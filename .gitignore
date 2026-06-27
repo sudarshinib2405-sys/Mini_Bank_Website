@@ -1,0 +1,6 @@
+.env
+bank.db
+bank.db-journal
+__pycache__/
+*.pyc
+venv/
